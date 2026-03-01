@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>GEONEX - Next Gen Geo Analytics and Cloud Integration</title>
+    <link rel="icon"
+          href="/static/assets/images/fav.png"
+          type="image/gif"
+          sizes="20x20" />
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="/static/assets/css/plugins.css" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div class="cursor d-none d-lg-block"></div>
+    <!-- Custom Cursor End -->
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="spinner-wrap">
+        <div class="preloader-logo">
+          <img src="/static/assets/images/powerai-symbol.png"
+               alt="GEONEX Geo Analytics Platform"
+               class="img-fluid" />
+        </div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+    <!-- back to to button start-->
+    <a href="#" id="scroll-top" class="back-to-top-btn"><i class="bi bi-arrow-up"></i></a>
+    <!-- back to to button end-->
+    <!-- Header area -->
+    <div class="site-wrapper">
+      <header>
+        <!-- Menu -->
+        <div class="header-top">
+          <div class="container">
+            <div class="row align-items-center justify-content-between gy-4">
+              <div class="col-lg-5">
+                <p class="text_color_light_white d-flex align-items-center header-top-text">
+                  <span class="text_color_white">
+                    <svg class="me-1"
+                         width="20"
+                         height="20"
+                         viewBox="0 0 20 20"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 1C5.03702 1 1 5.03702 1 10C1 14.963 5.03702 19 10 19C14.963 19 19 14.963 19 10C19 5.03702 14.963 1 10 1Z" fill="white" />
+                    </svg>
+                    AI Powered Geo Analytics Platform
+                  </span>
+                </p>
+              </div>
+              <div class="col-lg-7 d-none d-lg-block">
+                <div class="header-top-contact d-flex align-items-center justify-content-lg-end">
+                  <span class="text_color_white header-top-address header-top-item">
+                    Technologies: CNN | Flask | Cloud Storage | Database
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-area menu-area-border">
+          <div class="container">
+            <div class="row align-items-center position-relative">
+              <div class="col-lg-3 hamburger-menu position-relative">
+                <div class="menu-logo-wrap">
+                  <a href="{{ url_for("index") }}">
+                    <img src="/static/assets/images/geologo.png" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <div class="nav-wrap d-flex justify-content-between align-items-center">
+                  <div class="mainmenu text-right">
+                    <ul class="home-menu">
+                      <li>
+                        <a href="{{ url_for("index") }}">Home</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("about") }}">About</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("methodology") }}">Methodology</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("upload") }}">Upload Image</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("report") }}">Get Report</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="menu-btn-wrap flex-shrink-0 d-none d-lg-block">
+                    {% if session.get('user_id') %}
+                      <a class="common-btn bg-white-style me-2" href="{{ url_for("logout") }}">Logout</a>
+                    {% else %}
+                      <a class="common-btn bg-white-style me-2" href="{{ url_for("login") }}">Login</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Menu end -->
+      </header>
+      <!-- Hero -->
+      <section class="hero-area-cg minus-margin position-relative z-index-one">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <div class="cg-hero-info position-relative z-index-one">
+                <div class="section-title gradient-sub-title gradient-sub-border text-center">
+                  <div class="gradient-sub-border-wrap">
+                    <span class="text-uppercase text_color_white gradient-sub">Next Gen Geo Analytics Platform</span>
+                  </div>
+                  <h2 class="title text_color_white">AI Based Satellite Image Classification and Location Analytics</h2>
+                  <p class="desc text_color_light_white section-middle max-width-728">
+                    GEONEX is a next generation geo analytics system that uses
+                    convolutional neural networks to classify satellite images
+                    into land cover categories such as forest, river and urban
+                    areas. The platform securely stores location based image
+                    data in the cloud and enables users to generate analytical
+                    reports for monitoring and decision support.
+                  </p>
+                </div>
+                <div class="two-btn-wrap d-flex justify-content-center flex-wrap mt-lg-5 mt-4">
+                  <a class="common-btn bg-blue-style" href="{{ url_for("login") }}">
+                    Get Started
+                    <svg width="25"
+                         height="24"
+                         viewBox="0 0 25 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.2498 5V15C20.2498 15.414 19.9138 15.75 19.4998 15.75C19.0858 15.75 18.7498 15.414 18.7498 15V6.81104L7.02981 18.531C6.88381 18.677 6.69178 18.751 6.49978 18.751C6.30778 18.751 6.11575 18.678 5.96975 18.531C5.67675 18.238 5.67675 17.763 5.96975 17.47L17.6897 5.75H9.49978C9.08578 5.75 8.74978 5.414 8.74978 5C8.74978 4.586 9.08578 4.25 9.49978 4.25H19.4998C19.5978 4.25 19.6949 4.27011 19.7869 4.30811C19.9699 4.38411 20.1159 4.53011 20.1929 4.71411C20.2299 4.80511 20.2498 4.902 20.2498 5Z" fill="currentColor" />
+                    </svg>
+                  </a>
+                  <a class="common-btn border-style border-style-transparent"
+                     href="{{ url_for("index") }}">
+                    Learn More
+                    <svg width="25"
+                         height="24"
+                         viewBox="0 0 25 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.1919 12.2869C21.1539 12.3789 21.099 12.4618 21.03 12.5308L17.03 16.5308C16.884 16.6768 16.692 16.7508 16.5 16.7508C16.308 16.7508 16.116 16.6778 15.97 16.5308C15.677 16.2378 15.677 15.7628 15.97 15.4698L18.6899 12.7498H4.5C4.086 12.7498 3.75 12.4138 3.75 11.9998C3.75 11.5858 4.086 11.2498 4.5 11.2498H18.689L15.969 8.52981C15.676 8.23681 15.676 7.76177 15.969 7.46877C16.262 7.17577 16.737 7.17577 17.03 7.46877L21.03 11.4688C21.099 11.5378 21.1539 11.6207 21.1919 11.7127C21.2679 11.8967 21.2679 12.1029 21.1919 12.2869Z" fill="currentColor" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="cg-hero-img-wrap position-relative">
+                <div class="cg-hero-img-box position-relative">
+                  <img src="/static/assets/images/geoimg1.png"
+                       alt="Satellite image classification using CNN" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img class="position-absolute start-0 bottom-0 w-100 h-100 z-index-minus-one"
+             src="/static/assets/images/shapes/hero-cg-dust.png"
+             alt="" />
+        <img class="position-absolute start-0 bottom-0 w-100 h-100"
+             src="/static/assets/images/hero/cg-hero-bg.png"
+             alt="" />
+      </section>
+      <!-- Hero End -->
+      <!-- Brand -->
+      <section class="brand-area bg_color_black_two pt-120 pb-120">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2 class="commitment-brand-title text-uppercase text-center pb-60">Technologies and Frameworks Used in GEONEX</h2>
+              <div class="swiper brand-slide-wrap side-shadow">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="brand-box text-center">
+                      <h5 class="text_color_white">Convolutional Neural Networks (CNN)</h5>
+                      <p class="text_color_light_white mt-2">
+                        Used for automatic classification of satellite images into
+                        land cover categories such as forest, river and urban areas.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="brand-box text-center">
+                      <h5 class="text_color_white">Satellite Imagery</h5>
+                      <p class="text_color_light_white mt-2">
+                        High resolution satellite images are used as input data
+                        for analysing geographical and environmental patterns.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="brand-box text-center">
+                      <h5 class="text_color_white">Flask Backend</h5>
+                      <p class="text_color_light_white mt-2">
+                        Python Flask framework is used to handle server side logic,
+                        model integration, authentication and API processing.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="brand-box text-center">
+                      <h5 class="text_color_white">Cloud Storage</h5>
+                      <p class="text_color_light_white mt-2">
+                        Cloud platform is used to store satellite images securely
+                        and enable scalable access without overloading the database.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="brand-box text-center">
+                      <h5 class="text_color_white">Database Management System</h5>
+                      <p class="text_color_light_white mt-2">
+                        Database is used to store metadata such as location details,
+                        image references, classification results and timestamps.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="brand-box text-center">
+                      <h5 class="text_color_white">Web Technologies</h5>
+                      <p class="text_color_light_white mt-2">
+                        HTML, CSS and JavaScript are used to design a responsive
+                        and user friendly interface for interacting with the system.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Brand End -->
+      <!-- Features -->
+      <section class="cg-features-area bg_color_black_two pb-120">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="section-title gradient-sub-title gradient-sub-border text-center">
+                <div class="gradient-sub-border-wrap">
+                  <span class="text-uppercase text_color_white gradient-sub">Key Features</span>
+                </div>
+                <h2 class="title text-anim text_color_white">Explore Our Features</h2>
+                <p class="desc text_color_light_white section-middle max-width-728">
+                  GEONEX provides an integrated geo analytics platform that combines
+                  satellite image classification, cloud based storage and location
+                  wise analysis to support environmental monitoring and spatial
+                  decision making.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row gy-4 pt-60">
+            <div class="col-lg-4 col-md-6">
+              <div class="cg-features-box text-center">
+                <div class="cg-features-icon-wrap section-middle w-100 position-relative overflow-hidden">
+                  <div class="cg-features-icon text-center">
+                    <img src="/static/assets/images/icon/features-1.svg" alt="" />
+                  </div>
+                </div>
+                <div class="cg-features-info">
+                  <h2 class="h2 text_color_white">AI Based Satellite Image Classification</h2>
+                  <p class="section-middle text_color_light_white">
+                    The system uses convolutional neural networks to automatically
+                    classify satellite images into land cover categories such as forest,
+                    river and urban regions based purely on image features.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="cg-features-box text-center">
+                <div class="cg-features-icon-wrap section-middle w-100 position-relative overflow-hidden">
+                  <div class="cg-features-icon text-center">
+                    <img src="/static/assets/images/icon/features-2.svg" alt="" />
+                  </div>
+                </div>
+                <div class="cg-features-info">
+                  <h2 class="h2 text_color_white">Cloud Integrated Image Management</h2>
+                  <p class="section-middle text_color_light_white">
+                    All uploaded satellite images are securely stored in a cloud platform,
+                    while essential metadata such as location and classification results
+                    are maintained in the database for efficient access and scalability.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="cg-features-box text-center">
+                <div class="cg-features-icon-wrap section-middle w-100 position-relative overflow-hidden">
+                  <div class="cg-features-icon text-center">
+                    <img src="/static/assets/images/icon/feature-3.svg" alt="" />
+                  </div>
+                </div>
+                <div class="cg-features-info">
+                  <h2 class="h2 text_color_white">Location Based Analysis and Reporting</h2>
+                  <p class="section-middle text_color_light_white">
+                    GEONEX allows users to manage multiple locations and generate
+                    detailed reports containing historical image records and
+                    classification outcomes for monitoring and analysis.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Features -->
+      <!-- Works -->
+      <section class="cg-work-area bg_color_black_two pb-120">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="section-title gradient-sub-title gradient-sub-border text-center">
+                <div class="gradient-sub-border-wrap">
+                  <span class="text-uppercase text_color_white gradient-sub">System Workflow</span>
+                </div>
+                <h2 class="title text_color_white text-anim">How GEONEX Processes Satellite Images</h2>
+                <p class="desc text_color_light_white section-middle max-width-728">
+                  GEONEX follows a structured and efficient workflow to analyse satellite
+                  images using deep learning techniques, store the processed data securely
+                  and generate location based analytical reports for users.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-60 gy-4 cg-work-box-area-wrap">
+            <div class="col-lg-12 single-cg-work-box-area">
+              <div class="cg-work-box-wrap">
+                <div class="cg-work-box overflow-hidden d-flex justify-content-between flex-column flex-xl-row">
+                  <div class="cg-work-info order-1 order-xl-0">
+                    <span class="text_color_white d-inline-block">Step 1</span>
+                    <h2 class="text_color_white">User Login and Data Submission</h2>
+                    <p class="text_color_light_white">
+                      The user registers and logs into the system to gain authorised access.
+                      After authentication, the user uploads satellite images along with
+                      the corresponding location information for analysis.
+                    </p>
+                    <ul class="listing listing-two d-flex flex-column custom-ul mt-3">
+                      <li>
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1.25C6.072 1.25 1.25 6.073 1.25 12C1.25 17.927 6.072 22.75 12 22.75C17.928 22.75 22.75 17.927 22.75 12C22.75 6.073 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.03 9.13599C16.323 9.42899 16.323 9.90402 16.03 10.197L11.363 14.864C11.217 15.01 11.025 15.084 10.833 15.084C10.641 15.084 10.449 15.011 10.303 14.864L7.97 12.531C7.677 12.238 7.677 11.763 7.97 11.47C8.263 11.177 8.73801 11.177 9.03101 11.47L10.834 13.273L14.97 9.13702C15.263 8.84402 15.737 8.84399 16.03 9.13599Z" fill="currentColor" />
+                        </svg>
+                        Secure user authentication using login credentials.
+                      </li>
+                      <li>
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1.25C6.072 1.25 1.25 6.073 1.25 12C1.25 17.927 6.072 22.75 12 22.75C17.928 22.75 22.75 17.927 22.75 12C22.75 6.073 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.03 9.13599C16.323 9.42899 16.323 9.90402 16.03 10.197L11.363 14.864C11.217 15.01 11.025 15.084 10.833 15.084C10.641 15.084 10.449 15.011 10.303 14.864L7.97 12.531C7.677 12.238 7.677 11.763 7.97 11.47C8.263 11.177 8.73801 11.177 9.03101 11.47L10.834 13.273L14.97 9.13702C15.263 8.84402 15.737 8.84399 16.03 9.13599Z" fill="currentColor" />
+                        </svg>
+                        Upload of satellite image and associated location details.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="cg-work-img overflow-hidden flex-shrink-0 order-0 order-xl-1">
+                    <img class="w-100" src="/static/assets/images/works/geoimg2.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 single-cg-work-box-area">
+              <div class="cg-work-box-wrap">
+                <div class="cg-work-box overflow-hidden d-flex justify-content-between flex-column flex-xl-row">
+                  <div class="cg-work-info order-1 order-xl-0">
+                    <span class="text_color_white d-inline-block">Step 2</span>
+                    <h2 class="text_color_white">Satellite Image Classification</h2>
+                    <p class="text_color_light_white">
+                      The uploaded satellite image is preprocessed and passed through a
+                      convolutional neural network model, which analyses visual patterns
+                      and classifies the image into predefined land cover categories.
+                    </p>
+                    <ul class="listing listing-two d-flex flex-column custom-ul mt-3">
+                      <li>
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1.25C6.072 1.25 1.25 6.073 1.25 12C1.25 17.927 6.072 22.75 12 22.75C17.928 22.75 22.75 17.927 22.75 12C22.75 6.073 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.03 9.13599C16.323 9.42899 16.323 9.90402 16.03 10.197L11.363 14.864C11.217 15.01 11.025 15.084 10.833 15.084C10.641 15.084 10.449 15.011 10.303 14.864L7.97 12.531C7.677 12.238 7.677 11.763 7.97 11.47C8.263 11.177 8.73801 11.177 9.03101 11.47L10.834 13.273L14.97 9.13702C15.263 8.84402 15.737 8.84399 16.03 9.13599Z" fill="currentColor" />
+                        </svg>
+                        Image preprocessing such as resizing and normalisation.
+                      </li>
+                      <li>
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1.25C6.072 1.25 1.25 6.073 1.25 12C1.25 17.927 6.072 22.75 12 22.75C17.928 22.75 22.75 17.927 22.75 12C22.75 6.073 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.03 9.13599C16.323 9.42899 16.323 9.90402 16.03 10.197L11.363 14.864C11.217 15.01 11.025 15.084 10.833 15.084C10.641 15.084 10.449 15.011 10.303 14.864L7.97 12.531C7.677 12.238 7.677 11.763 7.97 11.47C8.263 11.177 8.73801 11.177 9.03101 11.47L10.834 13.273L14.97 9.13702C15.263 8.84402 15.737 8.84399 16.03 9.13599Z" fill="currentColor" />
+                        </svg>
+                        CNN based prediction of land cover type from image features.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="cg-work-img overflow-hidden flex-shrink-0 order-0 order-xl-1">
+                    <img class="w-100" src="/static/assets/images/works/geoimg3.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 single-cg-work-box-area">
+              <div class="cg-work-box-wrap">
+                <div class="cg-work-box overflow-hidden d-flex justify-content-between flex-column flex-xl-row">
+                  <div class="cg-work-info order-1 order-xl-0">
+                    <span class="text_color_white d-inline-block">Step 3</span>
+                    <h2 class="text_color_white">Data Storage and Report Generation</h2>
+                    <p class="text_color_light_white">
+                      After classification, the satellite image is stored in a cloud platform,
+                      while classification results and location details are saved in the database.
+                      Users can later retrieve this information and generate detailed reports.
+                    </p>
+                    <ul class="listing listing-two d-flex flex-column custom-ul mt-3">
+                      <li>
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1.25C6.072 1.25 1.25 6.073 1.25 12C1.25 17.927 6.072 22.75 12 22.75C17.928 22.75 22.75 17.927 22.75 12C22.75 6.073 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.03 9.13599C16.323 9.42899 16.323 9.90402 16.03 10.197L11.363 14.864C11.217 15.01 11.025 15.084 10.833 15.084C10.641 15.084 10.449 15.011 10.303 14.864L7.97 12.531C7.677 12.238 7.677 11.763 7.97 11.47C8.263 11.177 8.73801 11.177 9.03101 11.47L10.834 13.273L14.97 9.13702C15.263 8.84402 15.737 8.84399 16.03 9.13599Z" fill="currentColor" />
+                        </svg>
+                        Secure storage of images in the cloud with database references.
+                      </li>
+                      <li>
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1.25C6.072 1.25 1.25 6.073 1.25 12C1.25 17.927 6.072 22.75 12 22.75C17.928 22.75 22.75 17.927 22.75 12C22.75 6.073 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.03 9.13599C16.323 9.42899 16.323 9.90402 16.03 10.197L11.363 14.864C11.217 15.01 11.025 15.084 10.833 15.084C10.641 15.084 10.449 15.011 10.303 14.864L7.97 12.531C7.677 12.238 7.677 11.763 7.97 11.47C8.263 11.177 8.73801 11.177 9.03101 11.47L10.834 13.273L14.97 9.13702C15.263 8.84402 15.737 8.84399 16.03 9.13599Z" fill="currentColor" />
+                        </svg>
+                        Location wise retrieval of data and downloadable analytical reports.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="cg-work-img overflow-hidden flex-shrink-0 order-0 order-xl-1">
+                    <img class="w-100" src="/static/assets/images/works/geoimg41.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Works End -->
+      <!-- Creativity -->
+      <section class="cg-creativity-area pb-120 position-relative z-index-one">
+        <div class="container">
+          <div class="row gy-4 align-items-center justify-content-lg-between">
+            <div class="col-lg-7">
+              <div class="section-title gradient-sub-title gradient-sub-border">
+                <div class="gradient-sub-border-wrap">
+                  <span class="text-uppercase text_color_white gradient-sub">use-cases</span>
+                </div>
+                <h2 class="title text_color_white text-anim">Practical Applications of GEONEX</h2>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <p class="text_color_light_white">
+                GEONEX supports multiple real-world scenarios by combining satellite imagery
+                with intelligent analysis. The platform enables data-driven insights for
+                monitoring, planning, and decision-making across various domains.
+              </p>
+            </div>
+          </div>
+          <div class="row pt-60">
+            <div class="col-lg-12">
+              <div class="creativity-wrap position-relative z-index-one">
+                <div class="creativity-box text-center w-100">
+                  <div class="creativity-icon-wrap section-middle d-inline-block">
+                    <div class="creativity-icon d-flex align-items-center justify-content-center position-relative z-index-one">
+                      <svg width="51"
+                           height="50"
+                           viewBox="0 0 51 50"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.4656 2.68755C20.8377 2.61626 21.2186 2.60259 21.5965 2.60356C25.3387 2.60649 29.0819 2.60063 32.824 2.60649C33.6561 2.59868 34.3846 3.36723 34.3533 4.19536C34.3475 4.99809 34.3719 5.80278 34.3367 6.60552C34.2215 8.40727 32.9588 10.0655 31.2537 10.6563C30.5076 10.9434 29.7 10.9522 28.9129 10.9375C25.3992 10.9375 21.8865 10.9366 18.3738 10.9385C17.7518 10.9288 17.0819 10.628 16.7987 10.0479C16.5887 9.62602 16.6561 9.14262 16.6453 8.68852C16.6619 7.71098 16.5565 6.69829 16.9051 5.76177C17.4315 4.19829 18.8416 2.97856 20.4656 2.68755Z" fill="currentColor" />
+                        <path d="M29.6934 13.0205C31.4131 13.0205 33.1123 12.3271 34.3545 11.1406C34.3525 12.9932 34.3564 14.8467 34.3525 16.6992C34.3506 18.5498 33.6582 20.3877 32.4443 21.7842C31.3369 23.0674 29.7998 23.9736 28.1387 24.3125C26.9814 24.5674 25.791 24.4551 24.6182 24.4805C22.8672 24.5127 21.1123 23.9434 19.7227 22.8779C17.7881 21.4238 16.6133 19.0283 16.6465 16.6074C16.6445 15.2744 16.6475 13.9414 16.6445 12.6084C17.1631 12.8232 17.707 13.0137 18.2734 13.0225C22.0801 13.0205 25.8867 13.0234 29.6934 13.0205Z" fill="currentColor" />
+                        <path d="M12.4326 25.9962C13.7646 24.5118 15.6914 23.5831 17.6807 23.4561C18.1104 23.4259 18.5723 23.4044 18.958 23.6309C19.3789 23.8507 19.6055 24.2872 19.8818 24.6524C20.5146 25.503 21.1357 26.422 22.084 26.9513C22.8164 27.3888 23.6699 27.6085 24.5205 27.6036C25.2412 27.6026 25.9609 27.6104 26.6816 27.5987C27.957 27.5684 29.2021 26.9815 30.0469 26.0265C30.582 25.4132 31.0488 24.7452 31.5254 24.087C31.8184 23.6749 32.3184 23.4259 32.8232 23.4386C34.4521 23.4415 36.0742 23.9737 37.3896 24.9337C39.0352 26.1241 40.1699 27.9815 40.5019 29.9835C39.9512 29.7901 39.3711 29.6827 38.7871 29.6886C29.9316 29.6866 21.0762 29.6876 12.2197 29.6876C11.6338 29.6827 11.0498 29.7872 10.498 29.9874C10.7451 28.5089 11.418 27.1017 12.4326 25.9962Z" fill="currentColor" />
+                        <path d="M11.8661 31.7877C14.4238 31.7476 16.9843 31.7818 19.5429 31.7701C25.956 31.7701 32.3691 31.7701 38.7822 31.7711C39.4687 31.7564 40.1591 32.0152 40.6542 32.4947C41.2861 33.0904 41.5742 34.0113 41.412 34.8629C40.8359 38.3199 40.2607 41.7779 39.6806 45.234C39.4951 46.4508 38.3486 47.4156 37.1181 47.3941C29.3701 47.3961 21.622 47.3961 13.874 47.3941C12.6454 47.4127 11.5009 46.4439 11.3173 45.2291C10.7382 41.775 10.164 38.3209 9.58783 34.8658C9.46478 34.1988 9.6015 33.485 9.98529 32.9244C10.4052 32.2935 11.1122 31.8658 11.8661 31.7877ZM24.9423 38.1226C24.2587 38.3717 23.8203 39.1383 23.9619 39.8541C24.0898 40.6812 24.9706 41.2975 25.7939 41.1158C26.6386 40.9732 27.2451 40.0504 27.0185 39.2174C26.8242 38.3326 25.7861 37.7691 24.9423 38.1226Z" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="creativity-info">
+                    <h2 class="h2 text_color_white">Urban Planning Authorities</h2>
+                    <p class="text_color_light_white">
+                      Analyse land usage patterns, infrastructure growth, and urban expansion using
+                      satellite-based insights for informed city planning.
+                    </p>
+                  </div>
+                </div>
+                <div class="creativity-box text-center w-100">
+                  <div class="creativity-icon-wrap section-middle d-inline-block">
+                    <div class="creativity-icon d-flex align-items-center justify-content-center position-relative z-index-one">
+                      <svg width="48"
+                           height="48"
+                           viewBox="0 0 48 48"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.31826 3.62152C9.24733 2.59777 10.617 1.99777 11.9989 2.00152C17.6633 1.99402 23.3267 2.00902 28.9911 1.99402C29.0117 3.95246 28.9939 5.91089 28.9995 7.86933C29.0089 8.62964 28.9508 9.40214 29.1364 10.1475C29.4645 11.5621 30.4461 12.8081 31.7464 13.455C32.4486 13.8178 33.2408 13.994 34.0301 13.9987C36.3551 14.0071 38.6792 13.9884 41.0042 14.0081C40.9939 19.8909 41.0042 25.7737 40.9986 31.6575C39.9448 29.4778 38.0839 27.7003 35.8442 26.775C33.5286 25.8009 30.8426 25.7456 28.4923 26.6343C26.2658 27.4584 24.3589 29.1075 23.2245 31.1934C22.1408 33.1537 21.7508 35.4862 22.137 37.6931C22.5364 40.0593 23.8264 42.2634 25.6976 43.7662C27.3842 45.1359 29.5301 45.9421 31.7042 45.9853C25.2298 46.02 18.7555 45.989 12.2811 46.0003C11.5048 46.0181 10.7192 45.899 10.0067 45.5812C8.23295 44.8312 7.00014 42.9825 7.00295 41.054C6.99545 29.7459 7.00201 18.4368 7.00014 7.12777C6.97295 5.84808 7.44358 4.56089 8.31826 3.62152ZM13.8158 11.0203C13.2851 11.1028 12.9026 11.67 13.0217 12.1931C13.1042 12.6703 13.573 13.0265 14.0539 12.9993C17.6839 13.0003 21.3148 13.0003 24.9448 12.9993C25.4951 13.035 26.0108 12.5587 25.9967 12.0028C26.0155 11.4468 25.5008 10.9659 24.9495 11.0006C21.3495 10.9978 17.7486 11.0025 14.1476 10.9987C14.0361 10.9978 13.9255 11.0053 13.8158 11.0203ZM16.8205 17.0193C16.3583 17.0925 15.9936 17.5312 16.002 17.9981C15.9861 18.5568 16.5045 19.0368 17.0576 18.9993C22.6855 19.0003 28.3142 19.0003 33.942 18.9993C34.4942 19.0359 35.0126 18.5578 34.9967 17.999C35.0136 17.4393 34.4914 16.9612 33.9383 17.0006C28.4698 16.9987 23.0014 17.0015 17.533 16.9996C17.2958 17.0015 17.0567 16.9875 16.8205 17.0193ZM13.6245 22.0753C13.1745 22.2496 12.9026 22.7775 13.033 23.2453C13.1398 23.7 13.5945 24.0253 14.0576 23.999C20.652 24.0018 27.2464 23.9981 33.8408 24.0009C34.123 24.0112 34.422 23.9568 34.6404 23.7637C35.0248 23.4553 35.1111 22.8506 34.8308 22.4465C34.6367 22.1493 34.2823 21.9843 33.9317 22.0003C27.4339 21.9984 20.937 22.0021 14.4401 21.9993C14.1683 22.005 13.8833 21.9721 13.6245 22.0753ZM13.8008 27.0234C13.3695 27.1031 13.0217 27.4996 13.0039 27.9403C12.957 28.4812 13.4248 28.9968 13.9695 28.995C15.9383 29.0071 17.908 28.9959 19.8767 29.0006C20.2058 29.0165 20.5526 28.905 20.7626 28.6406C21.1283 28.23 21.0514 27.5306 20.6061 27.2081C20.2686 26.9325 19.8092 27.0093 19.4061 27C17.5376 27.0159 15.6664 26.969 13.8008 27.0234ZM13.8223 32.0193C13.3264 32.0943 12.9486 32.5931 13.0067 33.0909C13.0405 33.5746 13.4745 33.9881 13.9611 33.9946C15.3045 34.005 16.6489 34.0003 17.9923 33.9975C18.5286 34.0125 19.0133 33.5343 18.9973 32.9962C19.0095 32.4609 18.5286 31.9875 17.9951 32.0025C16.6048 32.009 15.2117 31.9762 13.8223 32.0193ZM13.6255 37.0743C13.1492 37.2571 12.8792 37.8346 13.0536 38.3165C13.1876 38.7375 13.6217 39.0225 14.0605 38.999C15.7208 38.9971 17.3811 39.0065 19.0405 38.9943C19.5711 38.9887 20.0267 38.4965 19.9967 37.9678C19.993 37.4559 19.5383 37.0021 19.0255 37.005C17.4345 36.9918 15.8436 37.0059 14.2517 36.9984C14.0417 37.0012 13.8233 36.9928 13.6255 37.0743Z" fill="currentColor" />
+                        <path d="M31.0031 2.18152C31.2422 2.30621 31.4681 2.45808 31.6556 2.65402C34.4063 5.40371 37.1569 8.15433 39.9066 10.9059C40.2394 11.2443 40.6134 11.5593 40.8197 11.9971C38.4909 12 36.1631 12.0093 33.8353 11.9925C32.3259 11.9465 31.0106 10.5984 31.0041 9.08808C30.9966 6.78558 30.9984 4.48308 31.0031 2.18152Z" fill="currentColor" />
+                        <path d="M28.4755 28.7662C30.1837 27.9291 32.1955 27.7359 34.034 28.2272C35.7224 28.6678 37.2505 29.685 38.3174 31.0659C39.2324 32.2416 39.8052 33.6778 39.9562 35.1591C40.1362 36.8494 39.7527 38.5903 38.8874 40.0528C40.2871 41.4656 41.6934 42.8719 43.1005 44.2772C43.3977 44.5594 43.6762 44.8828 43.7943 45.2831C44.0812 46.1156 43.7287 47.1066 42.9824 47.5725C42.2324 48.0769 41.1477 47.9709 40.5121 47.3278C39.0224 45.8512 37.5459 44.3606 36.0534 42.8869C34.5777 43.7606 32.818 44.1422 31.1137 43.9509C29.2049 43.7503 27.3824 42.8334 26.0868 41.4178C25.0349 40.2816 24.3224 38.835 24.0702 37.3069C23.8096 35.7647 24.014 34.1484 24.6515 32.7206C25.408 31.0078 26.789 29.58 28.4755 28.7662ZM31.3284 31.0462C30.044 31.2169 28.8393 31.9106 28.049 32.9372C27.2943 33.9037 26.9165 35.1553 27.0177 36.3787C27.1105 37.7053 27.7677 38.9794 28.7905 39.8287C29.8649 40.7409 31.3396 41.1534 32.7327 40.9434C34.0649 40.7531 35.3024 39.9919 36.0759 38.8903C36.8193 37.8506 37.138 36.5175 36.9412 35.2547C36.7527 33.9562 36.0224 32.7487 34.964 31.9753C33.9337 31.2094 32.5996 30.8709 31.3284 31.0462Z" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="creativity-info">
+                    <h2 class="h2 text_color_white">Environmental Monitoring</h2>
+                    <p class="text_color_light_white">
+                      Track deforestation, vegetation loss, and land degradation through automated
+                      satellite image analysis.
+                    </p>
+                  </div>
+                </div>
+                <div class="creativity-box text-center w-100">
+                  <div class="creativity-icon-wrap section-middle d-inline-block">
+                    <div class="creativity-icon d-flex align-items-center justify-content-center position-relative z-index-one">
+                      <svg width="48"
+                           height="48"
+                           viewBox="0 0 48 48"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.50432 3.84204C1.51369 2.27548 2.93588 0.902041 4.50057 0.937666C17.3134 0.934853 30.1262 0.937666 42.939 0.936728C43.5006 0.927353 44.0799 0.924541 44.6068 1.14954C45.7271 1.57704 46.5109 2.73298 46.4978 3.93204C46.5024 12.5589 46.4987 21.1849 46.4996 29.8117C31.4996 29.8117 16.4996 29.8117 1.49963 29.8117C1.50244 21.1549 1.49401 12.4989 1.50432 3.84204ZM27.7684 5.92798C26.0049 6.79329 24.2584 7.69423 22.4921 8.55298C20.3715 8.60923 18.2434 8.54735 16.1199 8.58392C14.3049 8.66173 12.6053 9.85048 11.8909 11.5174C11.2431 12.9724 11.364 14.7414 12.2143 16.0895C12.8884 17.1911 14.0153 17.9927 15.2696 18.2936C15.2724 20.102 15.2649 21.9105 15.2734 23.718C15.2856 25.0352 16.0843 26.297 17.2553 26.8924C18.3053 27.4539 19.6337 27.4352 20.6743 26.8605C21.8096 26.253 22.5709 25.0117 22.5859 23.7227C22.5953 21.978 22.5859 20.2324 22.5906 18.4877C24.2696 19.3314 25.9431 20.1892 27.624 21.0283C28.3562 21.3855 29.2974 21.1558 29.8037 20.5258C30.0868 20.1883 30.2171 19.7449 30.2096 19.308C30.2078 15.4024 30.2134 11.4967 30.2068 7.59204C30.2406 6.39673 28.8671 5.46017 27.7684 5.92798ZM34.0656 7.9211C33.5396 8.09267 33.0962 8.44798 32.6087 8.70298C32.0884 8.96923 31.8512 9.65735 32.1118 10.1842C32.3462 10.7383 33.0671 11.0027 33.6034 10.728C34.0468 10.4889 34.4818 10.2302 34.9121 9.9686C35.3509 9.70235 35.5487 9.11267 35.3621 8.63548C35.184 8.11985 34.5953 7.8011 34.0656 7.9211ZM33.954 12.4024C33.3981 12.4886 32.9743 13.0445 33.0371 13.6033C33.0699 14.1564 33.5724 14.6252 34.1256 14.6261C34.6262 14.6317 35.1278 14.642 35.6284 14.6195C36.2556 14.5792 36.7487 13.9305 36.624 13.3155C36.5406 12.7989 36.0606 12.3855 35.5374 12.3855C35.0096 12.3845 34.4799 12.3583 33.954 12.4024ZM32.7343 16.2424C32.1371 16.4524 31.8315 17.2099 32.109 17.7789C32.2928 18.213 32.7596 18.3827 33.1328 18.6152C33.5528 18.8505 33.984 19.203 34.5006 19.098C35.1662 18.9977 35.619 18.2345 35.3631 17.6045C35.1746 17.0561 34.5737 16.8724 34.1303 16.5827C33.7215 16.3211 33.2303 16.0352 32.7343 16.2424Z" fill="currentColor" />
+                        <path d="M23.8647 10.3871C25.2297 9.70367 26.5919 9.01367 27.9587 8.33398C27.9597 11.7774 27.9597 15.2209 27.9587 18.6643C26.5928 17.9818 25.2287 17.2955 23.8647 16.6102C23.8647 14.5355 23.8637 12.4609 23.8647 10.3871Z" fill="currentColor" />
+                        <path d="M13.7263 13.4958C13.6917 12.1317 14.8607 10.8848 16.2229 10.8295C18.0201 10.8154 19.8163 10.8267 21.6135 10.8239C21.6173 12.6108 21.6088 14.3976 21.6173 16.1836C19.821 16.1564 18.0229 16.1883 16.2257 16.1676C14.8598 16.1123 13.6945 14.8608 13.7263 13.4958Z" fill="currentColor" />
+                        <path d="M17.5193 18.4249C18.4596 18.423 19.3989 18.424 20.3393 18.4249C20.3383 20.1593 20.3411 21.8937 20.3383 23.628C20.3421 24.063 20.1358 24.4952 19.7889 24.7596C19.3793 25.083 18.783 25.1505 18.318 24.9115C17.8286 24.6855 17.5089 24.1558 17.5193 23.6196C17.5183 21.888 17.5183 20.1565 17.5193 18.4249Z" fill="currentColor" />
+                        <path d="M1.49952 32.0625C16.4995 32.0625 31.4995 32.0625 46.4995 32.0625C46.4845 32.8256 46.5333 33.5916 46.4686 34.3528C46.2961 35.7937 44.9545 36.9656 43.5023 36.9356C30.9389 36.9403 18.3755 36.9366 5.81202 36.9375C5.23545 36.9253 4.65702 36.9666 4.08327 36.9066C2.91139 36.7519 1.88389 35.8387 1.59795 34.6903C1.40764 33.8297 1.53795 32.9372 1.49952 32.0625Z" fill="currentColor" />
+                        <path d="M19.125 39.1882C22.3743 39.1873 25.6237 39.1873 28.8731 39.1882C29.1881 41.0623 29.4975 42.9373 29.8125 44.8113C30.9075 44.8198 32.0043 44.7973 33.1003 44.8226C33.7368 44.8526 34.2356 45.5173 34.1025 46.1379C34.0125 46.6966 33.4622 47.1073 32.9025 47.0623C26.9653 47.0623 21.0272 47.0623 15.089 47.0623C14.4984 47.1073 13.9218 46.6376 13.8825 46.0404C13.8037 45.4085 14.3597 44.7991 14.9953 44.816C16.0584 44.8066 17.1225 44.816 18.1856 44.8113C18.5006 42.9373 18.81 41.0623 19.125 39.1882Z" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="creativity-info">
+                    <h2 class="h2 text_color_white">Agricultural Analysis</h2>
+                    <p class="text_color_light_white">
+                      Monitor crop health, soil conditions, and land suitability to support smarter
+                      agricultural decisions.
+                    </p>
+                  </div>
+                </div>
+                <div class="creativity-box text-center w-100">
+                  <div class="creativity-icon-wrap section-middle d-inline-block">
+                    <div class="creativity-icon d-flex align-items-center justify-content-center position-relative z-index-one">
+                      <svg width="48"
+                           height="48"
+                           viewBox="0 0 48 48"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.9601 4.99068C14.3566 3.20474 18.1891 2.25693 22.0263 2.25131C24.1845 2.25037 26.3435 2.24849 28.5016 2.25224C30.1657 2.25881 31.8101 2.96943 32.9566 4.17412C34.2082 5.46506 34.8541 7.31381 34.6741 9.10349C34.5785 10.2744 34.0423 11.3376 33.6795 12.4391C33.5201 11.3629 33.1798 10.3101 32.6266 9.37068C32.0482 8.43131 31.4079 7.53131 30.807 6.60599C30.6691 6.40537 30.5445 6.16818 30.3082 6.06881C30.0532 5.94787 29.7382 5.99474 29.5226 6.17381C28.8748 6.68381 28.2391 7.20974 27.5876 7.71506C26.7588 8.35162 25.7679 8.77818 24.7338 8.93006C24.0823 9.02849 23.4195 8.97693 22.7688 9.07724C21.6101 9.23849 20.4926 9.67537 19.5251 10.3326C17.8348 11.4651 16.1332 12.5797 14.4523 13.7254C14.0351 12.8769 13.602 12.036 13.1876 11.1857C12.9185 10.6438 12.9804 10.0063 13.212 9.46256C13.8204 7.78256 12.8341 5.73693 11.1345 5.17912C11.0595 5.14349 10.7548 5.08443 10.9601 4.99068Z" fill="currentColor" />
+                        <path d="M27.5293 9.54172C28.3703 9.08422 29.0781 8.43172 29.83 7.84766C30.2921 8.54516 30.7656 9.23609 31.2184 9.94016C31.8681 10.9723 32.2262 12.1845 32.2459 13.4042C32.2553 14.1861 32.2468 14.968 32.2496 15.7508C30.0296 15.7508 27.8106 15.7508 25.5906 15.7508C25.2728 15.7264 24.9428 15.8933 24.8162 16.1933C24.6953 16.5308 24.7675 16.8992 24.7496 17.2508C24.25 17.2508 23.7493 17.2508 23.2496 17.2508C23.2215 16.8608 23.3396 16.4202 23.1128 16.0723C22.96 15.8408 22.6768 15.7348 22.4068 15.7508C20.1878 15.7508 17.9687 15.7508 15.7496 15.7508C15.7487 15.3842 15.7487 15.0186 15.7506 14.652C17.3143 13.6161 18.8715 12.5698 20.4343 11.532C21.22 11.0089 22.1265 10.6677 23.0631 10.5505C23.5928 10.4839 24.13 10.512 24.6606 10.4502C25.6637 10.3386 26.6471 10.0339 27.5293 9.54172Z" fill="currentColor" />
+                        <path d="M13.0827 17.6648C13.3733 17.3282 13.8336 17.2232 14.2611 17.2448C14.2836 18.3726 14.3933 19.4976 14.5864 20.6085C14.1158 20.2232 13.6302 19.8566 13.1661 19.4638C12.6468 19.0213 12.6111 18.1551 13.0827 17.6648Z" fill="currentColor" />
+                        <path d="M15.7612 17.2513C16.2572 17.2494 16.7531 17.2504 17.25 17.2504C17.2547 18.0332 17.2415 18.816 17.2556 19.5979C17.2772 20.4585 17.8528 21.2647 18.6497 21.5816C19.154 21.8029 19.7156 21.7438 20.2509 21.7504C20.7647 21.7429 21.299 21.8 21.7875 21.606C22.5534 21.3294 23.1319 20.6019 23.2284 19.7938C23.2659 19.4469 23.2462 19.0982 23.25 18.7504C23.7497 18.7504 24.2503 18.7504 24.75 18.7504C24.7584 19.2641 24.6984 19.7994 24.8934 20.2888C25.1934 21.1175 26.0222 21.7222 26.9053 21.7447C27.5015 21.7513 28.0987 21.7616 28.695 21.7382C29.7525 21.6725 30.6684 20.7538 30.7378 19.6982C30.7669 18.8825 30.7415 18.066 30.75 17.2504C31.2459 17.2504 31.7419 17.2494 32.2378 17.2513C32.1769 20.6704 31.2122 24.0707 29.4497 27.0022C25.8169 26.9994 22.185 26.9975 18.5522 27.0041C16.784 24.0744 15.8203 20.6713 15.7612 17.2513Z" fill="currentColor" />
+                        <path d="M18.7499 17.25C19.7503 17.25 20.7496 17.25 21.7499 17.25C21.7453 18.0047 21.7584 18.7603 21.7453 19.515C21.7509 19.9078 21.3974 20.2547 21.0056 20.2463C20.5012 20.2538 19.9968 20.2537 19.4924 20.2453C19.0978 20.2547 18.7424 19.9012 18.7537 19.5056C18.7424 18.7537 18.7537 18.0019 18.7499 17.25Z" fill="currentColor" />
+                        <path d="M26.2499 17.25C27.2502 17.25 28.2496 17.25 29.2499 17.25C29.2462 18.0028 29.2574 18.7566 29.2453 19.5094C29.2537 19.9022 28.9021 20.2528 28.5093 20.2453C28.0059 20.2537 27.5006 20.2538 26.9971 20.2463C26.5987 20.2566 26.2415 19.9012 26.2537 19.5028C26.2424 18.7519 26.2537 18.0009 26.2499 17.25Z" fill="currentColor" />
+                        <path d="M33.7379 17.2441C34.0154 17.2507 34.3079 17.2516 34.5582 17.3923C35.0747 17.6473 35.3616 18.2782 35.2107 18.836C35.1432 19.1201 34.9641 19.3666 34.7382 19.5476C34.2985 19.9048 33.8569 20.2582 33.4116 20.6079C33.6038 19.496 33.7135 18.372 33.7379 17.2441Z" fill="currentColor" />
+                        <path d="M8.25153 30.7463C8.22059 29.5481 9.2959 28.4728 10.4931 28.501C19.464 28.4981 28.435 28.5019 37.405 28.4991C38.0012 28.4813 38.605 28.695 39.0381 29.1085C39.5125 29.5472 39.7703 30.196 39.7497 30.841C39.7487 35.8106 39.7497 40.7803 39.7497 45.75C29.2497 45.75 18.7497 45.75 8.24965 45.75C8.25059 40.7485 8.24778 35.7478 8.25153 30.7463ZM15.9728 32.4703C15.6775 32.7469 15.6803 33.2578 15.9756 33.5325C16.9703 34.5338 17.9734 35.5285 18.9681 36.5306C19.3253 36.18 19.6797 35.8256 20.0303 35.4685C19.2072 34.6453 18.3831 33.8241 17.5618 33C18.384 32.176 19.2072 31.3547 20.0303 30.5325C19.6787 30.1753 19.3243 29.8219 18.9681 29.4703C17.9715 30.4725 16.9684 31.4681 15.9728 32.4703ZM27.97 30.5297C28.794 31.3519 29.6162 32.1769 30.4403 33C29.6162 33.8231 28.794 34.6481 27.97 35.4694C28.3253 35.821 28.6787 36.1744 29.0303 36.5297C30.0165 35.5444 31.0028 34.5591 31.9872 33.5728C32.3547 33.2625 32.3125 32.6625 31.9393 32.3756C30.9681 31.4091 30.0006 30.4378 29.0303 29.4694C28.6759 29.8219 28.3234 30.1763 27.97 30.5297ZM21.1515 35.5491C21.55 35.85 21.9512 36.1472 22.3478 36.45C23.8497 34.4522 25.3478 32.4506 26.8478 30.451C26.4522 30.1463 26.049 29.851 25.6506 29.55C24.1515 31.5497 22.6515 33.5494 21.1515 35.5491ZM23.3884 37.5628C22.8868 37.666 22.4143 37.9013 22.029 38.2388C20.9472 39.1453 20.6781 40.8431 21.4262 42.0403C22.1453 43.2966 23.8328 43.8535 25.1584 43.2647C26.53 42.7219 27.3212 41.0803 26.8806 39.6694C26.4925 38.2003 24.8706 37.2178 23.3884 37.5628Z" fill="currentColor" />
+                        <path d="M2.60234 40.3798C3.23421 38.2498 4.7689 36.4123 6.74984 35.4082C6.74984 38.8554 6.74984 42.3026 6.74984 45.7498C5.24984 45.7498 3.74984 45.7498 2.24984 45.7498C2.30702 43.9591 2.05671 42.1179 2.60234 40.3798Z" fill="currentColor" />
+                        <path d="M41.2512 35.4062C43.788 36.6813 45.5524 39.3447 45.7259 42.1806C45.7774 43.3694 45.738 44.56 45.7502 45.7506C44.2502 45.7506 42.7502 45.7506 41.2502 45.7506C41.2502 42.3025 41.2493 38.8544 41.2512 35.4062Z" fill="currentColor" />
+                        <path d="M23.7428 39.0242C24.6222 38.8376 25.5269 39.6083 25.4969 40.5026C25.5166 41.3023 24.7985 42.0195 23.9978 41.9979C23.2338 42.0158 22.5363 41.3604 22.5044 40.5964C22.4406 39.8576 23.0097 39.1367 23.7428 39.0242Z" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="creativity-info">
+                    <h2 class="h2 text_color_white">Disaster Management Teams</h2>
+                    <p class="text_color_light_white">
+                      Assess affected regions before and after natural disasters to support rescue,
+                      recovery, and impact analysis.
+                    </p>
+                  </div>
+                </div>
+                <div class="creativity-box text-center w-100">
+                  <div class="creativity-icon-wrap section-middle d-inline-block">
+                    <div class="creativity-icon d-flex align-items-center justify-content-center position-relative z-index-one">
+                      <svg width="48"
+                           height="48"
+                           viewBox="0 0 48 48"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.0656 1.66787C21.5043 1.426 22.019 1.516 22.4981 1.50006C22.874 1.5085 23.2518 1.48037 23.6278 1.51318C23.879 1.5535 24.0262 1.81693 24 2.05787C23.9981 2.65693 24.0056 3.25693 23.9962 3.85693C24.0093 4.14006 23.745 4.32006 23.4909 4.351C21.6712 4.7185 20.2931 6.49506 20.369 8.34662C20.369 10.1044 20.3681 11.8613 20.369 13.6182C17.8856 14.4901 15.734 16.2713 14.4431 18.5682C13.1606 20.8116 12.7078 23.5172 13.2018 26.056C13.5187 27.7557 14.2593 29.3682 15.3103 30.7397C15.314 32.2097 15.3009 33.6807 15.3168 35.1507C15.3562 36.2129 16.2843 37.1438 17.3465 37.1869C18.3534 37.2038 19.3612 37.1879 20.3681 37.1944C20.3765 38.1385 20.3531 39.0835 20.3803 40.0276C20.4684 41.6597 21.6731 43.1588 23.2528 43.5854C23.5312 43.6641 23.9325 43.6979 23.9878 44.0532C24.0131 44.7141 24 45.3779 23.9953 46.0397C24.0018 46.2844 23.7806 46.5029 23.5359 46.4954C22.9396 46.5057 22.3434 46.5001 21.7471 46.4982C21.1706 46.5047 20.6118 46.1372 20.3934 45.6038C20.2546 45.2963 20.2753 44.9522 20.2528 44.6241C20.1768 43.4241 19.6312 42.2616 18.7546 41.4376C17.6915 40.4204 16.1728 39.8991 14.7093 40.0669C13.6265 40.1822 12.599 40.6885 11.8256 41.4516C11.4215 41.881 10.7625 42.0572 10.2075 41.8388C9.90184 41.7329 9.67027 41.4976 9.44996 41.2716C8.4684 40.2835 7.4784 39.3029 6.49684 38.3147C6.04965 37.8816 5.94277 37.156 6.22496 36.6057C6.34684 36.3619 6.55215 36.1782 6.72934 35.9766C7.45871 35.161 7.90496 34.0941 7.95465 32.9991C8.04559 31.3604 7.28152 29.6991 5.96809 28.7129C5.19652 28.1232 4.24215 27.7847 3.27277 27.7407C2.97934 27.7229 2.67184 27.736 2.39902 27.6076C1.87121 27.3826 1.4934 26.8332 1.50184 26.2547C1.49809 24.751 1.49809 23.2472 1.50184 21.7444C1.49434 21.1885 1.84215 20.6569 2.3409 20.4188C2.77965 20.1947 3.29059 20.3054 3.75934 20.2116C5.25465 20.0063 6.60371 19.0435 7.32277 17.7226C8.23496 16.1194 8.17777 14.0016 7.09965 12.4913C6.81371 12.0169 6.28965 11.7029 6.12934 11.1544C5.9784 10.6444 6.11246 10.0566 6.49777 9.6835C7.5609 8.62037 8.62215 7.55537 9.68715 6.49412C10.1062 6.06568 10.7943 5.94381 11.3362 6.19787C11.6278 6.32537 11.8368 6.571 12.0731 6.7735C13.0237 7.60412 14.3071 8.041 15.5671 7.95006C17.0559 7.86287 18.4903 7.08287 19.3593 5.86881C19.9612 5.03912 20.2668 4.01537 20.2725 2.99443C20.2603 2.446 20.5846 1.92287 21.0656 1.66787Z" fill="currentColor" />
+                        <path d="M21.9304 7.11948C22.3504 6.1848 23.3441 5.55011 24.3707 5.56417C29.5588 5.55948 34.7469 5.56511 39.935 5.56136C40.4216 5.5473 40.9222 5.58761 41.3694 5.79667C42.2919 6.19698 42.9379 7.15323 42.9566 8.16011C42.9679 9.0423 42.9585 9.92355 42.9604 10.8057C40.3569 10.8114 37.7535 10.7982 35.151 10.8114C33.9219 10.8479 33.0125 12.0479 33.0041 13.2198C32.9975 14.9382 32.9985 16.6576 33.0032 18.376C33.0116 19.4542 33.7457 20.5351 34.8285 20.7732C34.8397 21.2439 34.7647 21.751 35.0019 22.1814C35.316 22.7823 36.0679 23.1076 36.7213 22.9257C37.0307 22.8479 37.295 22.652 37.5032 22.4148C37.9804 21.8804 38.4594 21.3479 38.9338 20.8107C40.2754 20.8014 41.6179 20.8079 42.9604 20.807C42.9613 27.1201 42.9622 33.4332 42.9594 39.7464C42.9688 40.6932 42.4335 41.6185 41.6066 42.0817C41.1604 42.3432 40.6372 42.4501 40.1235 42.4379C34.8388 42.4332 29.5541 42.4454 24.2704 42.4323C22.9391 42.4173 21.7504 41.2698 21.6904 39.9395C21.6791 39.0207 21.6679 38.101 21.696 37.1832C23.81 37.2048 25.925 37.1935 28.0391 37.1889C29.1866 37.1692 30.171 36.1117 30.1222 34.967C30.1213 32.3729 30.1269 29.7789 30.1194 27.1848C30.1222 26.0739 29.1491 25.0773 28.0382 25.0604C25.9194 25.0501 23.8007 25.0604 21.681 25.0557C21.681 19.5789 21.6829 14.102 21.681 8.62605C21.665 8.11417 21.7016 7.58636 21.9304 7.11948ZM30.7672 38.0804C30.4541 38.1132 30.2038 38.4123 30.2113 38.7245C30.2019 39.0639 30.5 39.3798 30.8432 39.376C31.8107 39.3882 32.7791 39.3807 33.7475 39.3789C34.1085 39.4023 34.4441 39.0854 34.431 38.7217C34.4394 38.3654 34.1141 38.0523 33.7588 38.072C32.7613 38.0729 31.7629 38.0542 30.7672 38.0804Z" fill="currentColor" />
+                        <path d="M34.3112 13.5011C34.2399 12.8776 34.6224 12.0779 35.3406 12.1192C38.7184 12.1192 42.0971 12.1182 45.4759 12.1192C46.1059 12.0789 46.5184 12.7407 46.4977 13.3117C46.5034 14.9673 46.5015 16.6248 46.4987 18.2814C46.5184 18.8223 46.1687 19.4682 45.5724 19.4898C43.1659 19.5001 40.7593 19.4907 38.3527 19.4945C37.7256 20.1864 37.1134 20.8923 36.4815 21.5795C36.3943 21.7398 36.1121 21.6573 36.1459 21.4679C36.129 20.8108 36.1468 20.1517 36.1384 19.4936C35.7484 19.4701 35.3387 19.5545 34.9599 19.4307C34.5221 19.2404 34.3065 18.7389 34.314 18.2823C34.3084 16.6886 34.3149 15.0948 34.3112 13.5011ZM37.0515 15.2129C36.7618 15.3423 36.6043 15.6967 36.7037 15.9986C36.7862 16.2957 37.0937 16.4861 37.3965 16.4617C39.4027 16.4636 41.4099 16.4626 43.4162 16.4617C43.7434 16.4898 44.0724 16.2573 44.1249 15.9264C44.2084 15.5495 43.8906 15.1482 43.5024 15.1557C41.5337 15.1407 39.564 15.1567 37.5952 15.1482C37.4134 15.1539 37.2202 15.1351 37.0515 15.2129Z" fill="currentColor" />
+                        <path d="M17.2919 26.3919C17.5253 26.3525 17.7634 26.3694 17.9997 26.3675C21.3137 26.3713 24.6287 26.3638 27.9437 26.3713C28.4265 26.3544 28.8419 26.8044 28.8081 27.2834C28.8128 29.7519 28.8062 32.2203 28.8119 34.6888C28.809 34.9616 28.8287 35.2634 28.66 35.4969C28.4856 35.7659 28.1594 35.8991 27.8453 35.8813C24.4037 35.8794 20.9622 35.8831 17.5215 35.8794C17.1184 35.8981 16.7265 35.6047 16.6459 35.2072C16.6084 34.9747 16.6234 34.7384 16.6215 34.505C16.6244 32.0956 16.6197 29.6863 16.6234 27.2759C16.6 26.8709 16.8925 26.4753 17.2919 26.3919ZM21.1056 29.3544C20.9312 29.4313 20.8356 29.6244 20.845 29.81C20.8412 30.6875 20.8412 31.5659 20.8459 32.4434C20.8328 32.6581 20.9753 32.8728 21.189 32.9253C21.4047 32.9938 21.5978 32.8447 21.7778 32.7491C22.4837 32.33 23.2065 31.9381 23.9069 31.5097C24.1825 31.3503 24.1853 30.9013 23.9087 30.74C23.1906 30.3003 22.4481 29.9 21.7244 29.4678C21.5406 29.36 21.3156 29.2334 21.1056 29.3544Z" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="creativity-info">
+                    <h2 class="h2 text_color_white">Government & Policy Makers</h2>
+                    <p class="text_color_light_white">
+                      Use geospatial insights for land regulation, zoning enforcement, and regional
+                      development planning.
+                    </p>
+                  </div>
+                </div>
+                <div class="creativity-box text-center w-100">
+                  <div class="creativity-icon-wrap section-middle d-inline-block">
+                    <div class="creativity-icon d-flex align-items-center justify-content-center position-relative z-index-one">
+                      <svg width="48"
+                           height="48"
+                           viewBox="0 0 48 48"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.0656 1.66787C21.5043 1.426 22.019 1.516 22.4981 1.50006C22.874 1.5085 23.2518 1.48037 23.6278 1.51318C23.879 1.5535 24.0262 1.81693 24 2.05787C23.9981 2.65693 24.0056 3.25693 23.9962 3.85693C24.0093 4.14006 23.745 4.32006 23.4909 4.351C21.6712 4.7185 20.2931 6.49506 20.369 8.34662C20.369 10.1044 20.3681 11.8613 20.369 13.6182C17.8856 14.4901 15.734 16.2713 14.4431 18.5682C13.1606 20.8116 12.7078 23.5172 13.2018 26.056C13.5187 27.7557 14.2593 29.3682 15.3103 30.7397C15.314 32.2097 15.3009 33.6807 15.3168 35.1507C15.3562 36.2129 16.2843 37.1438 17.3465 37.1869C18.3534 37.2038 19.3612 37.1879 20.3681 37.1944C20.3765 38.1385 20.3531 39.0835 20.3803 40.0276C20.4684 41.6597 21.6731 43.1588 23.2528 43.5854C23.5312 43.6641 23.9325 43.6979 23.9878 44.0532C24.0131 44.7141 24 45.3779 23.9953 46.0397C24.0018 46.2844 23.7806 46.5029 23.5359 46.4954C22.9396 46.5057 22.3434 46.5001 21.7471 46.4982C21.1706 46.5047 20.6118 46.1372 20.3934 45.6038C20.2546 45.2963 20.2753 44.9522 20.2528 44.6241C20.1768 43.4241 19.6312 42.2616 18.7546 41.4376C17.6915 40.4204 16.1728 39.8991 14.7093 40.0669C13.6265 40.1822 12.599 40.6885 11.8256 41.4516C11.4215 41.881 10.7625 42.0572 10.2075 41.8388C9.90184 41.7329 9.67027 41.4976 9.44996 41.2716C8.4684 40.2835 7.4784 39.3029 6.49684 38.3147C6.04965 37.8816 5.94277 37.156 6.22496 36.6057C6.34684 36.3619 6.55215 36.1782 6.72934 35.9766C7.45871 35.161 7.90496 34.0941 7.95465 32.9991C8.04559 31.3604 7.28152 29.6991 5.96809 28.7129C5.19652 28.1232 4.24215 27.7847 3.27277 27.7407C2.97934 27.7229 2.67184 27.736 2.39902 27.6076C1.87121 27.3826 1.4934 26.8332 1.50184 26.2547C1.49809 24.751 1.49809 23.2472 1.50184 21.7444C1.49434 21.1885 1.84215 20.6569 2.3409 20.4188C2.77965 20.1947 3.29059 20.3054 3.75934 20.2116C5.25465 20.0063 6.60371 19.0435 7.32277 17.7226C8.23496 16.1194 8.17777 14.0016 7.09965 12.4913C6.81371 12.0169 6.28965 11.7029 6.12934 11.1544C5.9784 10.6444 6.11246 10.0566 6.49777 9.6835C7.5609 8.62037 8.62215 7.55537 9.68715 6.49412C10.1062 6.06568 10.7943 5.94381 11.3362 6.19787C11.6278 6.32537 11.8368 6.571 12.0731 6.7735C13.0237 7.60412 14.3071 8.041 15.5671 7.95006C17.0559 7.86287 18.4903 7.08287 19.3593 5.86881C19.9612 5.03912 20.2668 4.01537 20.2725 2.99443C20.2603 2.446 20.5846 1.92287 21.0656 1.66787Z" fill="currentColor" />
+                        <path d="M21.9304 7.11948C22.3504 6.1848 23.3441 5.55011 24.3707 5.56417C29.5588 5.55948 34.7469 5.56511 39.935 5.56136C40.4216 5.5473 40.9222 5.58761 41.3694 5.79667C42.2919 6.19698 42.9379 7.15323 42.9566 8.16011C42.9679 9.0423 42.9585 9.92355 42.9604 10.8057C40.3569 10.8114 37.7535 10.7982 35.151 10.8114C33.9219 10.8479 33.0125 12.0479 33.0041 13.2198C32.9975 14.9382 32.9985 16.6576 33.0032 18.376C33.0116 19.4542 33.7457 20.5351 34.8285 20.7732C34.8397 21.2439 34.7647 21.751 35.0019 22.1814C35.316 22.7823 36.0679 23.1076 36.7213 22.9257C37.0307 22.8479 37.295 22.652 37.5032 22.4148C37.9804 21.8804 38.4594 21.3479 38.9338 20.8107C40.2754 20.8014 41.6179 20.8079 42.9604 20.807C42.9613 27.1201 42.9622 33.4332 42.9594 39.7464C42.9688 40.6932 42.4335 41.6185 41.6066 42.0817C41.1604 42.3432 40.6372 42.4501 40.1235 42.4379C34.8388 42.4332 29.5541 42.4454 24.2704 42.4323C22.9391 42.4173 21.7504 41.2698 21.6904 39.9395C21.6791 39.0207 21.6679 38.101 21.696 37.1832C23.81 37.2048 25.925 37.1935 28.0391 37.1889C29.1866 37.1692 30.171 36.1117 30.1222 34.967C30.1213 32.3729 30.1269 29.7789 30.1194 27.1848C30.1222 26.0739 29.1491 25.0773 28.0382 25.0604C25.9194 25.0501 23.8007 25.0604 21.681 25.0557C21.681 19.5789 21.6829 14.102 21.681 8.62605C21.665 8.11417 21.7016 7.58636 21.9304 7.11948ZM30.7672 38.0804C30.4541 38.1132 30.2038 38.4123 30.2113 38.7245C30.2019 39.0639 30.5 39.3798 30.8432 39.376C31.8107 39.3882 32.7791 39.3807 33.7475 39.3789C34.1085 39.4023 34.4441 39.0854 34.431 38.7217C34.4394 38.3654 34.1141 38.0523 33.7588 38.072C32.7613 38.0729 31.7629 38.0542 30.7672 38.0804Z" fill="currentColor" />
+                        <path d="M34.3112 13.5011C34.2399 12.8776 34.6224 12.0779 35.3406 12.1192C38.7184 12.1192 42.0971 12.1182 45.4759 12.1192C46.1059 12.0789 46.5184 12.7407 46.4977 13.3117C46.5034 14.9673 46.5015 16.6248 46.4987 18.2814C46.5184 18.8223 46.1687 19.4682 45.5724 19.4898C43.1659 19.5001 40.7593 19.4907 38.3527 19.4945C37.7256 20.1864 37.1134 20.8923 36.4815 21.5795C36.3943 21.7398 36.1121 21.6573 36.1459 21.4679C36.129 20.8108 36.1468 20.1517 36.1384 19.4936C35.7484 19.4701 35.3387 19.5545 34.9599 19.4307C34.5221 19.2404 34.3065 18.7389 34.314 18.2823C34.3084 16.6886 34.3149 15.0948 34.3112 13.5011ZM37.0515 15.2129C36.7618 15.3423 36.6043 15.6967 36.7037 15.9986C36.7862 16.2957 37.0937 16.4861 37.3965 16.4617C39.4027 16.4636 41.4099 16.4626 43.4162 16.4617C43.7434 16.4898 44.0724 16.2573 44.1249 15.9264C44.2084 15.5495 43.8906 15.1482 43.5024 15.1557C41.5337 15.1407 39.564 15.1567 37.5952 15.1482C37.4134 15.1539 37.2202 15.1351 37.0515 15.2129Z" fill="currentColor" />
+                        <path d="M17.2919 26.3919C17.5253 26.3525 17.7634 26.3694 17.9997 26.3675C21.3137 26.3713 24.6287 26.3638 27.9437 26.3713C28.4265 26.3544 28.8419 26.8044 28.8081 27.2834C28.8128 29.7519 28.8062 32.2203 28.8119 34.6888C28.809 34.9616 28.8287 35.2634 28.66 35.4969C28.4856 35.7659 28.1594 35.8991 27.8453 35.8813C24.4037 35.8794 20.9622 35.8831 17.5215 35.8794C17.1184 35.8981 16.7265 35.6047 16.6459 35.2072C16.6084 34.9747 16.6234 34.7384 16.6215 34.505C16.6244 32.0956 16.6197 29.6863 16.6234 27.2759C16.6 26.8709 16.8925 26.4753 17.2919 26.3919ZM21.1056 29.3544C20.9312 29.4313 20.8356 29.6244 20.845 29.81C20.8412 30.6875 20.8412 31.5659 20.8459 32.4434C20.8328 32.6581 20.9753 32.8728 21.189 32.9253C21.4047 32.9938 21.5978 32.8447 21.7778 32.7491C22.4837 32.33 23.2065 31.9381 23.9069 31.5097C24.1825 31.3503 24.1853 30.9013 23.9087 30.74C23.1906 30.3003 22.4481 29.9 21.7244 29.4678C21.5406 29.36 21.3156 29.2334 21.1056 29.3544Z" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="creativity-info">
+                    <h2 class="h2 text_color_white">Researchers & Analysts</h2>
+                    <p class="text_color_light_white">
+                      Access structured satellite data and AI-generated insights for geographic and
+                      environmental research.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img class="position-absolute start-50 translate-middle-x bottom-0"
+             src="/static/assets/images/shapes/creativity-bg-sp.png"
+             alt="" />
+      </section>
+      <!-- Creativity End -->
+      <!-- Subscribe -->
+      <section class="subscribe-area bg_color_deep_blue position-relative z-index-one">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="subscribe-wrap subscribe-wrap-two overflow-hidden position-relative z-index-one">
+                <div class="section-title text-center">
+                  <h2 class="title text_color_white text-anim">Ready to Explore Intelligent Geospatial Insights?</h2>
+                  <p class="desc text_color_light_white">
+                    Leverage satellite imagery and AI-powered analytics to gain deeper visibility
+                    into land patterns, environmental changes, and spatial data.
+                  </p>
+                </div>
+                <div class="two-btn-wrap d-flex flex-wrap justify-content-center">
+                  <a class="common-btn bg-blue-style" href="{{ url_for("login") }}">Get Started with GEONEX</a>
+                </div>
+                <img class="position-absolute z-index-minus-one start-0 top-0 h-100 w-100"
+                     src="/static/assets/images/shapes/noise.png"
+                     alt="" />
+                <svg class="arrow-left-img position-absolute z-index-minus-one start-0"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="487"
+                     height="282"
+                     viewBox="0 0 487 282"
+                     fill="none">
+                  <path d="M-75.0925 0.559411C-52.8054 39.8517 -31.3707 61.2603 11.3733 76.1087C49.9737 89.5177 98.4011 87.9239 138.902 88.8366C189.046 89.9666 279.836 111.385 284.626 173.218C288.346 221.23 239.694 257.51 198.414 225.938C182.499 213.767 182.76 186.158 197.302 172.721C213.01 158.207 242.078 159.764 261.448 162.682C313.47 170.52 327.438 227.731 367.395 252.704C404.725 276.036 441.783 269.902 481.958 257.65C485.4 256.601 478.533 269.963 477.15 273.438C472.081 286.177 476.878 281.537 480.711 271.905C483.176 265.71 491.681 253.838 481.924 254.03C474.884 254.17 461.982 249.7 455.217 247.008" stroke="white" stroke-opacity="0.15" stroke-linecap="round" />
+                </svg>
+                <svg class="arrow-right-img position-absolute z-index-minus-one end-0"
+                     width="517"
+                     height="195"
+                     viewBox="0 0 517 195"
+                     fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.5 157C61.5 125.5 318.5 141.5 360.051 30.6766C362.168 20.542 365.235 4.6987 351.721 1.61396C331.419 -3.02024 306.932 17.8011 293.133 29.3808C268.503 50.0502 247.589 75.6353 231.63 103.564C221.681 120.975 206.183 149.763 211.545 170.853C264.5 265.5 547.766 34.1925 558.5 24.5015" stroke="white" stroke-opacity="0.15" stroke-linecap="round" />
+                  <path d="M49.4261 161.822L1.5 159.502L34.0002 129.502" stroke="white" stroke-opacity="0.15" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Subscribe end -->
+      <!-- Footer -->
+      <section class="footer-area footer-area-two bg_color_deep_blue pt-120">
+        <div class="container">
+          <div class="row justify-content-between footer-widget-wrapper border-bottom-0">
+            <div class="col-lg-3">
+              <div class="footer-widget">
+                <div class="footer-desc">
+                  <img src="/static/assets/images/geologo.png" alt="" />
+                  <p class="text_color_light_white mt-3">
+                    GEONEX is a next generation geospatial analytics platform that leverages
+                    satellite imagery, AI models, and cloud infrastructure to analyse land use,
+                    environmental patterns, and spatial data efficiently.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+              <div class="footer-widget d-lg-flex justify-content-center">
+                <div class="footer-link-wrap">
+                  <h3 class="footer-title">Pages</h3>
+                  <ul class="custom-ul footer-link">
+                    <li>
+                      <a href="{{ url_for("index") }}">Home</a>
+                    </li>
+                    <li>
+                      <a href="{{ url_for("about") }}">About</a>
+                    </li>
+                    <li>
+                      <a href="{{ url_for("methodology") }}">Methodology</a>
+                    </li>
+                    <li>
+                      <a href="{{ url_for("upload") }}">Upload Image</a>
+                    </li>
+                    <li>
+                      <a href="{{ url_for("report") }}">Get Report</a>
+                    </li>
+                    {% if session.get('user_id') %}
+                      <li>
+                        <a href="{{ url_for("logout") }}">Logout</a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <a href="{{ url_for("login") }}">Login</a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+              <div class="footer-widget d-lg-flex justify-content-center">
+                <div class="footer-link-wrap">
+                  <h3 class="footer-title">Features</h3>
+                  <ul class="custom-ul footer-link">
+                    <li>
+                      <a href="#">Satellite Image Upload</a>
+                    </li>
+                    <li>
+                      <a href="#">AI Image Classification</a>
+                    </li>
+                    <li>
+                      <a href="#">Location Management</a>
+                    </li>
+                    <li>
+                      <a href="#">Cloud Storage</a>
+                    </li>
+                    <li>
+                      <a href="#">Generate Reports</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-widget">
+                <h3 class="footer-title">Contact</h3>
+                <div class="footer-subscribe position-relative">
+                  <input class="w-100" type="email" value="contact@geonex.ai" readonly />
+                </div>
+                <p class="text_color_light_white mt-3">For queries, support, or collaboration, reach out to us via email.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copy-right-wrap copy-right-wrap-two d-flex justify-content-center">
+          <p class="text_color_light_white">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="16"
+                 height="16"
+                 viewBox="0 0 16 16"
+                 fill="none">
+              <path d="M7.9987 15.1693C4.0467 15.1693 0.832031 11.9546 0.832031 8.0026C0.832031 4.0506 4.0467 0.835938 7.9987 0.835938C11.9507 0.835938 15.1654 4.0506 15.1654 8.0026C15.1654 11.9546 11.9507 15.1693 7.9987 15.1693ZM7.9987 1.83594C4.59803 1.83594 1.83203 4.60194 1.83203 8.0026C1.83203 11.4033 4.59803 14.1693 7.9987 14.1693C11.3994 14.1693 14.1654 11.4033 14.1654 8.0026C14.1654 4.60194 11.3994 1.83594 7.9987 1.83594ZM10.41 9.6206C10.5667 9.39394 10.51 9.08196 10.2834 8.92529C10.056 8.76729 9.74473 8.82525 9.5874 9.05192C9.2474 9.54325 8.68796 9.83659 8.09196 9.83659C7.08063 9.83659 6.25863 9.01459 6.25863 8.00325C6.25863 6.99192 7.08063 6.16992 8.09196 6.16992C8.68863 6.16992 9.2474 6.46326 9.5874 6.95459C9.74473 7.18126 10.056 7.23988 10.2834 7.08122C10.5107 6.92388 10.5673 6.61257 10.41 6.3859C9.88266 5.62457 9.01597 5.17057 8.09131 5.17057C6.52864 5.17057 5.25798 6.44191 5.25798 8.00391C5.25798 9.56591 6.52864 10.8372 8.09131 10.8372C9.01597 10.8359 9.88266 10.3813 10.41 9.6206Z" fill="currentColor" fill-opacity="0.7" />
+            </svg>
+            2025 GEONEX. All Rights Reserved.
+          </p>
+        </div>
+      </section>
+      <!-- Footer End -->
+    </div>
+    <!-- Jquery JS -->
+    <script src="/static/assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- MixItUp JS -->
+    <script src="/static/assets/js/jquery.mixitup.min.js"></script>
+    <!-- Swiper Carousel JS -->
+    <script src="/static/assets/js/swiper-bundle.min.js"></script>
+    <!-- Magnific Popup JS -->
+    <script src="/static/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Odometer JS -->
+    <script src="/static/assets/js/odometer.min.js"></script>
+    <script src="/static/assets/js/viewport.jquery.js"></script>
+    <!-- Mean menu JS -->
+    <script src="/static/assets/js/jquery.meanmenu.min.js"></script>
+    <!-- YouTubePopUp JS -->
+    <script src="/static/assets/js/YouTubePopUp.js"></script>
+    <!-- Select2 JS -->
+    <script src="/static/assets/js/select2.js"></script>
+    <!-- gsap JS -->
+    <script src="/static/assets/js/gsap.min.js"></script>
+    <!-- Main JS -->
+    <script src="/static/assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>GEONEX - Next Gen Geo Analytics and Cloud Integration</title>
+    <link rel="icon"
+          href="/static/assets/images/fav.png"
+          type="image/gif"
+          sizes="20x20" />
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="/static/assets/css/plugins.css" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div class="cursor d-none d-lg-block"></div>
+    <!-- Custom Cursor End -->
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="spinner-wrap">
+        <div class="preloader-logo">
+          <img src="/static/assets/images/powerai-symbol.png"
+               alt=""
+               class="img-fluid" />
+        </div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+    <!-- back to to button start-->
+    <a href="#" id="scroll-top" class="back-to-top-btn"><i class="bi bi-arrow-up"></i></a>
+    <!-- back to to button end-->
+    <!-- Header area -->
+    <div class="site-wrapper">
+      <header>
+        <!-- Menu -->
+        <div class="header-top z-index-one">
+          <div class="container">
+            <div class="row align-items-center justify-content-between gy-4">
+              <div class="col-lg-5">
+                <p class="text_color_light_white d-flex align-items-center header-top-text">
+                  <span class="text_color_white">
+                    <svg class="me-1"
+                         width="20"
+                         height="20"
+                         viewBox="0 0 20 20"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 1C5.03702 1 1 5.03702 1 10C1 14.963 5.03702 19 10 19C14.963 19 19 14.963 19 10C19 5.03702 14.963 1 10 1Z" fill="white" />
+                    </svg>
+                    AI Powered Geo Analytics Platform
+                  </p>
+                </div>
+                <div class="col-lg-7 d-none d-lg-block">
+                  <div class="header-top-contact d-flex align-items-center justify-content-lg-end">
+                    <span class="text_color_white header-top-address header-top-item">
+                      Technologies: CNN | Flask | Cloud Storage | Database
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-area">
+            <div class="container">
+              <div class="row align-items-center position-relative">
+                <div class="col-lg-3 hamburger-menu position-relative">
+                  <div class="menu-logo-wrap">
+                    <a href="{{ url_for("index") }}">
+                      <img src="/static/assets/images/geologo.png" alt="" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="nav-wrap d-flex justify-content-between align-items-center">
+                    <div class="mainmenu text-right">
+                      <ul class="home-menu">
+                        <li>
+                          <a href="{{ url_for("index") }}">Home</a>
+                        </li>
+                        <li>
+                          <a href="{{ url_for("about") }}">About</a>
+                        </li>
+                        <li>
+                          <a href="{{ url_for("methodology") }}">Methodology</a>
+                        </li>
+                        <li>
+                          <a href="{{ url_for("upload") }}">Upload Image</a>
+                        </li>
+                        <li>
+                          <a href="{{ url_for("report") }}">Get Report</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="menu-btn-wrap flex-shrink-0 d-none d-lg-block">
+                      {% if session.get('user_id') %}
+                        <a class="common-btn bg-white-style me-2" href="{{ url_for("logout") }}">Logout</a>
+                      {% else %}
+                        <a class="common-btn bg-white-style me-2" href="{{ url_for("login") }}">Login</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Menu end -->
+        </header>
+        <!-- Form Start -->
+        <section class="common-bg-area minus-margin bg_color_deep_blue">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <div class="form-wrap section-middle w-100 text-center">
+                  <!-- Flash Messages -->
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}<p class="text_color_light_white mb-3">{{ message }}</p>{% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                  <!-- Register Form -->
+                  <form class="common-form-box"
+                        method="POST"
+                        action="{{ url_for("register") }}">
+                    <h3 class="form-title text_color_white text-center">Create Your Account</h3>
+                    <div class="row gy-4">
+                      <!-- Username -->
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <label>Username</label>
+                          <input type="text" name="uname" placeholder="Enter your username" required />
+                        </div>
+                      </div>
+                      <!-- Email -->
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <label>Email</label>
+                          <input type="email" name="email" placeholder="Enter your email" required />
+                        </div>
+                      </div>
+                      <!-- Password -->
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <label>Password</label>
+                          <input type="password"
+                                 name="password"
+                                 placeholder="Enter your password"
+                                 required />
+                        </div>
+                      </div>
+                      <!-- Submit -->
+                      <div class="col-lg-12">
+                        <button type="submit"
+                                class="common-btn bg-blue-style w-100 d-flex justify-content-center">Sign Up</button>
+                        <p class="text_color_light_white mt-3">
+                          Already have an account?
+                          <a class="login-link" href="{{ url_for("login") }}">Log In</a>
+                        </p>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Form End -->
+        <!-- Footer -->
+        <section class="footer-area footer-area-two bg_color_deep_blue pt-120">
+          <div class="container">
+            <div class="row justify-content-between footer-widget-wrapper border-bottom-0">
+              <div class="col-lg-3">
+                <div class="footer-widget">
+                  <div class="footer-desc">
+                    <img src="/static/assets/images/geologo.png" alt="" />
+                    <p class="text_color_light_white mt-3">
+                      GEONEX is a next generation geospatial analytics platform that leverages
+                      satellite imagery, AI models, and cloud infrastructure to analyse land use,
+                      environmental patterns, and spatial data efficiently.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="footer-widget d-lg-flex justify-content-center">
+                  <div class="footer-link-wrap">
+                    <h3 class="footer-title">Pages</h3>
+                    <ul class="custom-ul footer-link">
+                      <li>
+                        <a href="{{ url_for("index") }}">Home</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("about") }}">About</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("methodology") }}">Methodology</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("upload") }}">Upload Image</a>
+                      </li>
+                      <li>
+                        <a href="{{ url_for("report") }}">Get Report</a>
+                      </li>
+                      {% if session.get('user_id') %}
+                        <li>
+                          <a href="{{ url_for("logout") }}">Logout</a>
+                        </li>
+                      {% else %}
+                        <li>
+                          <a href="{{ url_for("login") }}">Login</a>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="footer-widget d-lg-flex justify-content-center">
+                  <div class="footer-link-wrap">
+                    <h3 class="footer-title">Features</h3>
+                    <ul class="custom-ul footer-link">
+                      <li>
+                        <a href="#">Satellite Image Upload</a>
+                      </li>
+                      <li>
+                        <a href="#">AI Image Classification</a>
+                      </li>
+                      <li>
+                        <a href="#">Location Management</a>
+                      </li>
+                      <li>
+                        <a href="#">Cloud Storage</a>
+                      </li>
+                      <li>
+                        <a href="#">Generate Reports</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="footer-widget">
+                  <h3 class="footer-title">Contact</h3>
+                  <div class="footer-subscribe position-relative">
+                    <input class="w-100" type="email" value="contact@geonex.ai" readonly />
+                  </div>
+                  <p class="text_color_light_white mt-3">For queries, support, or collaboration, reach out to us via email.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="copy-right-wrap copy-right-wrap-two d-flex justify-content-center">
+            <p class="text_color_light_white">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="16"
+                   height="16"
+                   viewBox="0 0 16 16"
+                   fill="none">
+                <path d="M7.9987 15.1693C4.0467 15.1693 0.832031 11.9546 0.832031 8.0026C0.832031 4.0506 4.0467 0.835938 7.9987 0.835938C11.9507 0.835938 15.1654 4.0506 15.1654 8.0026C15.1654 11.9546 11.9507 15.1693 7.9987 15.1693ZM7.9987 1.83594C4.59803 1.83594 1.83203 4.60194 1.83203 8.0026C1.83203 11.4033 4.59803 14.1693 7.9987 14.1693C11.3994 14.1693 14.1654 11.4033 14.1654 8.0026C14.1654 4.60194 11.3994 1.83594 7.9987 1.83594ZM10.41 9.6206C10.5667 9.39394 10.51 9.08196 10.2834 8.92529C10.056 8.76729 9.74473 8.82525 9.5874 9.05192C9.2474 9.54325 8.68796 9.83659 8.09196 9.83659C7.08063 9.83659 6.25863 9.01459 6.25863 8.00325C6.25863 6.99192 7.08063 6.16992 8.09196 6.16992C8.68863 6.16992 9.2474 6.46326 9.5874 6.95459C9.74473 7.18126 10.056 7.23988 10.2834 7.08122C10.5107 6.92388 10.5673 6.61257 10.41 6.3859C9.88266 5.62457 9.01597 5.17057 8.09131 5.17057C6.52864 5.17057 5.25798 6.44191 5.25798 8.00391C5.25798 9.56591 6.52864 10.8372 8.09131 10.8372C9.01597 10.8359 9.88266 10.3813 10.41 9.6206Z" fill="currentColor" fill-opacity="0.7" />
+              </svg>
+              2025 GEONEX. All Rights Reserved.
+            </p>
+          </div>
+        </section>
+        <!-- Footer End -->
+      </div>
+      <!-- Jquery JS -->
+      <script src="/static/assets/js/jquery-3.7.1.min.js"></script>
+      <!-- Bootstrap JS -->
+      <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+      <!-- MixItUp JS -->
+      <script src="/static/assets/js/jquery.mixitup.min.js"></script>
+      <!-- Swiper Carousel JS -->
+      <script src="/static/assets/js/swiper-bundle.min.js"></script>
+      <!-- Magnific Popup JS -->
+      <script src="/static/assets/js/jquery.magnific-popup.min.js"></script>
+      <!-- Odometer JS -->
+      <script src="/static/assets/js/odometer.min.js"></script>
+      <script src="/static/assets/js/viewport.jquery.js"></script>
+      <!-- Mean menu JS -->
+      <script src="/static/assets/js/jquery.meanmenu.min.js"></script>
+      <!-- YouTubePopUp JS -->
+      <script src="/static/assets/js/YouTubePopUp.js"></script>
+      <!-- Select2 JS -->
+      <script src="/static/assets/js/select2.js"></script>
+      <!-- gsap JS -->
+      <script src="/static/assets/js/gsap.min.js"></script>
+      <!-- Main JS -->
+      <script src="/static/assets/js/main.js"></script>
+    </body>
+  </html>
